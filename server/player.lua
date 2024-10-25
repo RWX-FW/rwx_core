@@ -1,4 +1,5 @@
-local cfg = rwx.cfg
+local cfg = require('config.server')
+local query = require('server.query')
 
 function CheckPlayerData(source, playerData)
     playerData = playerData or {}
@@ -34,7 +35,7 @@ function GenerateUniqueIdentifier(type)
     local tb = cfg.identifierTypes[type]
     repeat
         uniqueId = tb.valueFunction()
-        isUnique = rwx.query.fetchIsUnique(type, uniqueId)
+        isUnique = query.fetchIsUnique(type, uniqueId)
     until isUnique
     return uniqueId
 end exports('GenerateUniqueIdentifier', GenerateUniqueIdentifier)
