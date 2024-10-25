@@ -6,6 +6,8 @@ description 'Core resource for rwx framework'
 lua54 'yes'
 version '0.0.1'
 
+ui_page 'web/build/index.html'
+
 shared_scripts {
     '@ox_lib/init.lua',
     'shared/lib.lua',
@@ -26,4 +28,10 @@ dependencies {
     '/onesync',
     'ox_lib',
     'oxmysql'
+}
+
+files {
+    'web/build/**.js',
+    'web/build/**.css',
+    'web/build/index.html',
 }
