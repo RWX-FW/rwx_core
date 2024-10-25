@@ -13,6 +13,7 @@ import { Button } from "@/components/ui/button";
 import CalendarIcon from "@/icons/CalendarIcon";
 import { cn } from "@/lib/utils";
 import AlertDispatch from "./components/Alert";
+import { fetchNui } from "@/utils/fetchNui";
 
 type playerData = {
   firstName: string;
@@ -22,7 +23,7 @@ type playerData = {
   dateOfBirth: string;
 };
 
-const RegisterLayout = () => {
+const RegisterLayout = ({setShowRegister}: {setShowRegister: React.Dispatch<React.SetStateAction<boolean>>}) => {
   const {
     register,
     handleSubmit,
@@ -43,7 +44,11 @@ const RegisterLayout = () => {
   const [height, setHeight] = useState(170);
 
   const onSubmit = (data: playerData) => {
-    console.log(data);
+    fetchNui<string>('register', data).then((res) => {
+      if (res === 'success') {
+        setShowRegister(false)
+      }
+    })
   };
 
   return (

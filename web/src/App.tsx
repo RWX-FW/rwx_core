@@ -27,18 +27,27 @@ debugData([
                 cash: 100
             }
         ]
+    },
+])
+
+debugData([
+    {
+        action: 'setVisible',
+        data: true
     }
 ])
 
-
 const App = () => {
-    const [visible, setVisible] = useState(true)
+    const [visible, setVisible] = useState(false)
     const [showRegister, setShowRegister] = useState(false)
 
     const [playerData, setPlayerData] = useState<PlayerDataProps[]>([])
 
+    useNuiEvent('setVisible', (data: boolean) => {
+        setVisible(data)
+    })
+
     fetchNui<boolean>('appReady').then((res) => {
-        console.log(res)
         setVisible(res)
     })
 
@@ -50,7 +59,7 @@ const App = () => {
     visible && (
         <div className='w-screen h-screen flex dark text-foreground items-center bg-card/20 justify-between flex-row-reverse'>
             <Multicharacter setShowRegister={setShowRegister} showRegister={showRegister} playerData={playerData}/>
-            {showRegister && <RegisterLayout/>}
+            {showRegister && <RegisterLayout setShowRegister={setShowRegister}/>}
         </div>
     )
         
