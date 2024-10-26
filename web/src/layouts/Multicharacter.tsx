@@ -58,7 +58,7 @@ const Multicharacter = (props: props) => {
   }, [dataIndex, onCharacterChange]);
 
   return (
-    <div className="flex justify-center items-center mr-40 w-fit flex-col">
+    <div className="flex justify-center items-center mr-3 w-[40%] px-4 flex-col">
       <div className="font-bold text-3xl">
         {props.playerData[dataIndex] && props.playerData[dataIndex]?.firstname}{" "}
         {(props.playerData[dataIndex] &&
@@ -95,7 +95,7 @@ const Multicharacter = (props: props) => {
           </div>
         </div>
       )}
-      {props.playerData.length > 0 && (
+      {props.playerData.length > 1 && (
         <div className="flex justify-center items-center gap-2 ">
           <Button disabled={loading || isFirstCharacter} onClick={() => handlePrevCharacter()} size={'icon'} className="bg-foreground/30 text-foreground hover:bg-foreground/50">
             <ArrowLeftIcon />
